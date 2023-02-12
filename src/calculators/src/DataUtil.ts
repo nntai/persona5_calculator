@@ -54,7 +54,8 @@ const customPersonaList: PersonaData[] = (() => {
   return arr;
 })();
 
-const fullPersonaList: PersonaData[] = (() => {
+const calculateFullPersonaList: () => PersonaData[] = () => {
+  console.log('🚀 ~ file: DataUtil.ts:70 ~ calculateFullPersonaList');
   const arr = [];
   for (const key in personaMap) {
     if (personaMap.hasOwnProperty(key)) {
@@ -66,7 +67,7 @@ const fullPersonaList: PersonaData[] = (() => {
     }
   }
   return arr;
-})();
+};
 
 const skillList: SkillData[] = (() => {
   const arr = [];
@@ -272,4 +273,5 @@ export {
   customPersonaList,
   special2Combos,
   getResultArcana,
+  calculateFullPersonaList,
 };

@@ -6,7 +6,7 @@ class PersonaListController {
   $scope;
   constructor($scope) {
     this.$scope = $scope;
-    $scope.fullPersonaList = fullPersonaList;
+    $scope.fullPersonaList = calculateFullPersonaList();
 
     // set the default sort param
     $scope.sortBy = 'level';
