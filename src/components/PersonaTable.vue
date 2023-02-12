@@ -31,14 +31,17 @@ const defaultColDef = {
   filter: true,
   flex: 1,
 };
+const numericDef = {
+  type: 'numericColumn', filter: 'agNumberColumnFilter'
+};
 const columnDefs = reactive({
      value: [
+        { headerName: 'Level', field: 'level', ...numericDef },
         {
           headerName: 'Persona',
           children: [
-            { headerName: 'Level', field: 'level' },
-            { headerName: 'Name', field: 'name' },
-            { headerName: 'Arcana', field: 'arcana' },
+            { headerName: 'Name', field: 'name', sortable: false },
+            { headerName: 'Arcana', field: 'arcana', sortable: false },
           ]
         },
         {
@@ -46,6 +49,7 @@ const columnDefs = reactive({
           children: statChildrenCols.map(stat => ({
             field: stat,
             columnGroupShow: 'closed',
+            ...numericDef,
           })),
         },
         {
@@ -60,6 +64,7 @@ const columnDefs = reactive({
               'c-gray-500': ({ value }) => value === 'nu',
             },
             columnGroupShow: 'closed',
+            ...numericDef,
           }))
         }
       ],
