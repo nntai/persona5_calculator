@@ -10,7 +10,10 @@ specifiers:
   '@vue/eslint-config-typescript': ^11.0.2
   '@vue/test-utils': ^2.2.7
   '@vueuse/core': ^9.11.0
+  ag-grid-community: ^29.0.0
+  ag-grid-vue3: ^29.0.0
   eslint: ^8.32.0
+  eslint-plugin-vue: ^9.9.0
   jsdom: ^21.0.0
   pnpm: ^7.25.1
   taze: ^0.8.5
@@ -28,6 +31,8 @@ specifiers:
 
 dependencies:
   '@vueuse/core': 9.11.0_vue@3.2.45
+  ag-grid-community: 29.0.0
+  ag-grid-vue3: 29.0.0
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
 
@@ -38,9 +43,10 @@ devDependencies:
   '@unocss/reset': 0.48.4
   '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
   '@vue-macros/volar': 0.5.15_vue-tsc@1.0.24+vue@3.2.45
-  '@vue/eslint-config-typescript': 11.0.2_7uibuqfxkfaozanbtbziikiqje
+  '@vue/eslint-config-typescript': 11.0.2_5gm7ezxcdo2zu65gboxarjsumy
   '@vue/test-utils': 2.2.7_vue@3.2.45
   eslint: 8.32.0
+  eslint-plugin-vue: 9.9.0_eslint@8.32.0
   jsdom: 21.0.0
   pnpm: 7.25.1
   taze: 0.8.5
@@ -118,7 +124,7 @@ packages:
       '@antfu/eslint-config-basic': 0.34.1_caon6io6stgpr7lz2rtbhekxqy
       '@antfu/eslint-config-ts': 0.34.1_7uibuqfxkfaozanbtbziikiqje
       eslint: 8.32.0
-      eslint-plugin-vue: 9.8.0_eslint@8.32.0
+      eslint-plugin-vue: 9.9.0_eslint@8.32.0
       local-pkg: 0.4.2
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
@@ -145,7 +151,7 @@ packages:
       eslint-plugin-n: 15.6.1_eslint@8.32.0
       eslint-plugin-promise: 6.1.1_eslint@8.32.0
       eslint-plugin-unicorn: 45.0.2_eslint@8.32.0
-      eslint-plugin-vue: 9.8.0_eslint@8.32.0
+      eslint-plugin-vue: 9.9.0_eslint@8.32.0
       eslint-plugin-yml: 1.4.0_eslint@8.32.0
       jsonc-eslint-parser: 2.1.0
       yaml-eslint-parser: 1.1.0
@@ -1332,7 +1338,7 @@ packages:
     resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
     dev: false
 
-  /@vue/eslint-config-typescript/11.0.2_7uibuqfxkfaozanbtbziikiqje:
+  /@vue/eslint-config-typescript/11.0.2_5gm7ezxcdo2zu65gboxarjsumy:
     resolution: {integrity: sha512-EiKud1NqlWmSapBFkeSrE994qpKx7/27uCGnhdqzllYDpQZroyX/O6bwjEpeuyKamvLbsGdO6PMR2faIf+zFnw==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1346,6 +1352,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
       '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
       eslint: 8.32.0
+      eslint-plugin-vue: 9.9.0_eslint@8.32.0
       typescript: 4.9.4
       vue-eslint-parser: 9.0.3_eslint@8.32.0
     transitivePeerDependencies:
@@ -1459,6 +1466,17 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
+
+  /ag-grid-community/29.0.0:
+    resolution: {integrity: sha512-onAQIqjhP1L93W5myAsfLBMBUyZPrWDb8FRulJuhjQKo8DEA4GSZ+oJHxwwLymm4biLu54zvZ+9GkTftha8gAg==}
+    dev: false
+
+  /ag-grid-vue3/29.0.0:
+    resolution: {integrity: sha512-2X2B/PbRojoSbTQpjvThPtOsnc9K53HoG8M+fjQK3LEL7Xv0g3MRHuQ9pp0W6nqe73n+pH2YgM6yjI++zf4kpg==}
+    dependencies:
+      ag-grid-community: 29.0.0
+      vue: 3.2.45
+    dev: false
 
   /agent-base/6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -2402,8 +2420,8 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
-  /eslint-plugin-vue/9.8.0_eslint@8.32.0:
-    resolution: {integrity: sha512-E/AXwcTzunyzM83C2QqDHxepMzvI2y6x+mmeYHbVDQlKFqmKYvRrhaVixEeeG27uI44p9oKDFiyCRw4XxgtfHA==}
+  /eslint-plugin-vue/9.9.0_eslint@8.32.0:
+    resolution: {integrity: sha512-YbubS7eK0J7DCf0U2LxvVP7LMfs6rC6UltihIgval3azO3gyDwEGVgsCMe1TmDiEkl6GdMKfRpaME6QxIYtzDQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0

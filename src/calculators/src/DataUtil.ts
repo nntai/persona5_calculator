@@ -1,11 +1,8 @@
-/// <reference path="../data/Data5.ts"/>
-/// <reference path="../data/PersonaData.ts"/>
-/// <reference path="../data/SkillData.ts"/>
-/// <reference path="../data/ItemData.ts"/>
 /**
  * Created by Chin on 08-Apr-17.
+ * Updated by Tai in 2023
  */
-import { PersonaData, personaMap } from '../data/PersonaData';
+import { PersonaData, personaMap, FullPersonaData } from '../data/PersonaData';
 import { SkillData, skillMap } from '../data/SkillData';
 import { arcana2Combos, specialCombos } from '../data/Data5';
 import { itemMap } from '../data/ItemData';
@@ -54,7 +51,7 @@ const customPersonaList: PersonaData[] = (() => {
   return arr;
 })();
 
-const calculateFullPersonaList: () => PersonaData[] = () => {
+const calculateFullPersonaList: () => FullPersonaData[] = () => {
   console.log('🚀 ~ file: DataUtil.ts:70 ~ calculateFullPersonaList');
   const arr = [];
   for (const key in personaMap) {
