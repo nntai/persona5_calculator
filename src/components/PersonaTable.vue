@@ -64,7 +64,6 @@ const columnDefs = reactive({
               'c-gray-500': ({ value }) => value === 'nu',
             },
             columnGroupShow: 'closed',
-            ...numericDef,
           }))
         }
       ],
