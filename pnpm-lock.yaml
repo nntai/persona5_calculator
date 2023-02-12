@@ -16,6 +16,7 @@ specifiers:
   eslint-plugin-vue: ^9.9.0
   jsdom: ^21.0.0
   pnpm: ^7.25.1
+  sass: ^1.58.0
   taze: ^0.8.5
   typescript: ^4.9.4
   unocss: ^0.48.4
@@ -49,15 +50,16 @@ devDependencies:
   eslint-plugin-vue: 9.9.0_eslint@8.32.0
   jsdom: 21.0.0
   pnpm: 7.25.1
+  sass: 1.58.0
   taze: 0.8.5
   typescript: 4.9.4
   unocss: 0.48.4_vite@4.0.4
   unplugin-auto-import: 0.12.1_@vueuse+core@9.11.0
   unplugin-vue-components: 0.22.12_vue@3.2.45
   unplugin-vue-macros: 1.4.2_httr7wqcry5mq7lnplxmfdl6ve
-  vite: 4.0.4_@types+node@18.11.18
+  vite: 4.0.4_f5vcjb3akvjdur4ffzogu2hewu
   vite-plugin-pages: 0.28.0_vite@4.0.4
-  vitest: 0.27.2_jsdom@21.0.0
+  vitest: 0.27.2_jsdom@21.0.0+sass@1.58.0
   vue-tsc: 1.0.24_typescript@4.9.4
 
 packages:
@@ -1027,7 +1029,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.2.12
       magic-string: 0.27.0
-      vite: 4.0.4_@types+node@18.11.18
+      vite: 4.0.4_f5vcjb3akvjdur4ffzogu2hewu
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -1039,7 +1041,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.0.4_@types+node@18.11.18
+      vite: 4.0.4_f5vcjb3akvjdur4ffzogu2hewu
       vue: 3.2.45
     dev: true
 
@@ -3006,6 +3008,10 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immutable/4.2.4:
+    resolution: {integrity: sha512-WDxL3Hheb1JkRN3sQkyujNlL/xRjAo3rJtaU5xeufUauG66JdMr32bLj4gF+vWl84DIA3Zxw7tiAjneYzRRw+w==}
+    dev: true
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -4404,6 +4410,16 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
+  /sass/1.58.0:
+    resolution: {integrity: sha512-PiMJcP33DdKtZ/1jSjjqVIKihoDc6yWmYr9K/4r3fVVIEDAluD0q7XZiRKrNJcPK3qkLRF/79DND1H5q1LBjgg==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.2.4
+      source-map-js: 1.0.2
+    dev: true
+
   /saxes/6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
@@ -4939,7 +4955,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.2
       unplugin: 1.0.1
-      vite: 4.0.4_@types+node@18.11.18
+      vite: 4.0.4_f5vcjb3akvjdur4ffzogu2hewu
     dev: true
 
   /unplugin-vue-components/0.22.12_vue@3.2.45:
@@ -5052,7 +5068,7 @@ packages:
       builtins: 5.0.1
     dev: true
 
-  /vite-node/0.27.2_@types+node@18.11.18:
+  /vite-node/0.27.2_f5vcjb3akvjdur4ffzogu2hewu:
     resolution: {integrity: sha512-IDwuVhslF10qCnWOGJui7/2KksAOBHi+UbVo6Pqt4f5lgn+kS2sVvYDsETRG5PSuslisGB5CFGvb9I6FQgymBQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -5064,7 +5080,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.0.4_@types+node@18.11.18
+      vite: 4.0.4_f5vcjb3akvjdur4ffzogu2hewu
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5092,13 +5108,13 @@ packages:
       json5: 2.2.1
       local-pkg: 0.4.2
       picocolors: 1.0.0
-      vite: 4.0.4_@types+node@18.11.18
+      vite: 4.0.4_f5vcjb3akvjdur4ffzogu2hewu
       yaml: 2.1.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite/4.0.4_@types+node@18.11.18:
+  /vite/4.0.4_f5vcjb3akvjdur4ffzogu2hewu:
     resolution: {integrity: sha512-xevPU7M8FU0i/80DMR+YhgrzR5KS2ORy1B4xcX/cXLsvnUWvfHuqMmVU6N0YiJ4JWGRJJsLCgjEzKjG9/GKoSw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -5128,11 +5144,12 @@ packages:
       postcss: 8.4.20
       resolve: 1.22.1
       rollup: 3.7.3
+      sass: 1.58.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.27.2_jsdom@21.0.0:
+  /vitest/0.27.2_jsdom@21.0.0+sass@1.58.0:
     resolution: {integrity: sha512-y7tdsL2uaQy+KF18AlmNHZe29ukyFytlxrpSTwwmgLE2XHR/aPucJP9FLjWoqjgqFlXzRAjHlFJLU+HDyI/OsA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -5170,8 +5187,8 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.0
       tinyspy: 1.0.2
-      vite: 4.0.4_@types+node@18.11.18
-      vite-node: 0.27.2_@types+node@18.11.18
+      vite: 4.0.4_f5vcjb3akvjdur4ffzogu2hewu
+      vite-node: 0.27.2_f5vcjb3akvjdur4ffzogu2hewu
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less

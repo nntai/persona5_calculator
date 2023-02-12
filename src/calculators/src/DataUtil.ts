@@ -52,7 +52,6 @@ const customPersonaList: PersonaData[] = (() => {
 })();
 
 const calculateFullPersonaList: () => FullPersonaData[] = () => {
-  console.log('🚀 ~ file: DataUtil.ts:70 ~ calculateFullPersonaList');
   const arr = [];
   for (const key in personaMap) {
     if (personaMap.hasOwnProperty(key)) {

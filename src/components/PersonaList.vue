@@ -1,10 +1,7 @@
 <template>
-  <div
-    v-for="(persona, index) in personas"
-    :key="index"
-  >
-    {{ persona.name }}
-  </div>
+  <PersonaTable
+    :personas="personas"
+  />
 </template>
 <script setup lang="ts">
 import { Ref } from 'vue';

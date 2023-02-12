@@ -1,7 +1,7 @@
 <template>
   <div>
-    Personas list
-    <PersonaList />
+    <div>Personas list</div>
+    <PersonaList class="mt-2" />
   </div>
 </template>
 

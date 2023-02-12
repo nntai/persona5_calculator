@@ -1,17 +1,11 @@
 <script setup lang="ts" generic="T extends any, O extends any">
+import Personas from './personas.vue';
+
 defineOptions({
   name: 'IndexPage',
 });
-
-const name = $ref('');
-
-const router = useRouter();
-const go = () => {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`);
-};
 </script>
 
 <template>
-  <div />
+  <Personas />
 </template>
