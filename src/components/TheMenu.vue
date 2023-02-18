@@ -15,6 +15,6 @@ const currentRoute = computed(() => route.name || 'other');
 const personaMenu = {
   personas: PersonaMenu,
 };
-const menuComponent = computed(() => personaMenu[currentRoute.value]);
+const menuComponent = computed(() => personaMenu[currentRoute.value] || PersonaMenu);
 
 </script>
