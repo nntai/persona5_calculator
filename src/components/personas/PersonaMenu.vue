@@ -11,53 +11,29 @@
     >
       Features toggle
     </div>
-    <div
-      font-500
-      text-4
-      flex
-      flex-row
-      cursor-pointer
-      @click="personasStore.toggleHighlightBestPersonas"
-    >
-      <div>
-        Highlight best personas at level
-      </div>
-      <input
-        type="number"
-        ml-1
-        border-solid
-        border-dark
-        border-width-1
-        border-rounded
-        w-10
-        appearance-none
-        min="1"
-        max="99"
-        :value="personasStore.highlightBestPersonasLevel"
-        @input="setHighlightBestPersonasLevel"
-      >
-    </div>
-    <div />
+    <menu-item
+      appearance-none
+      title="Highlight best personas at level:"
+      :model-value="personasStore.highlightBestPersonaStatAtLevel"
+      type="number"
+      @update:model-value="setHighlightBestPersonasLevel"
+    />
+    <menu-item
+      title=" Highlight best personas at their level"
+      :model-value="personasStore.highlightBestPersonaStatAtTheirLevel"
+      type="checkbox"
+      @click="personasStore.toggleBestPersonaAtTheirLevel"
+    />
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { usePersonasStore } from '~/pinia/personas';
 
 const personasStore = usePersonasStore();
-const setHighlightBestPersonasLevel = (event) => {
-  personasStore.setHighlightBestPersonasLevel(Number(event.target.value));
+const setHighlightBestPersonasLevel = (value: number) => {
+  personasStore.setHighlightBestPersonasLevel(value);
 };
 </script>
-<style scoped>
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+<style lang="scss" scoped>
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
 </style>

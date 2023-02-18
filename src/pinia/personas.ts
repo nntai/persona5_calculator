@@ -2,11 +2,15 @@ import { defineStore } from 'pinia';
 
 export const usePersonasStore = defineStore('personas', {
   state: () => ({
-    highlightBestPersonasLevel: 1,
+    highlightBestPersonaStatAtLevel: 0,
+    highlightBestPersonaStatAtTheirLevel: false,
   }),
   actions: {
     setHighlightBestPersonasLevel(level: number) {
-      this.highlightBestPersonasLevel = level;
+      this.highlightBestPersonaStatAtLevel = level;
+    },
+    toggleBestPersonaAtTheirLevel() {
+      this.highlightBestPersonaStatAtTheirLevel = !this.highlightBestPersonaStatAtTheirLevel;
     },
   },
 });

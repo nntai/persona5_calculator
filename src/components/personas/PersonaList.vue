@@ -1,7 +1,8 @@
 <template>
   <PersonaTable
     :personas="personas"
-    :highlight-best-personas-level="personasStore.highlightBestPersonasLevel"
+    :highlight-best-persona-stat-at-level="personasStore.highlightBestPersonaStatAtLevel"
+    :highlight-best-persona-stat-at-their-level="personasStore.highlightBestPersonaStatAtTheirLevel"
   />
 </template>
 <script setup lang="ts">

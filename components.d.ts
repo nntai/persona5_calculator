@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Header: typeof import('./src/components/personas/Header.vue')['default']
+    MenuItem: typeof import('./src/components/commons/MenuItem.vue')['default']
     PersonaHeader: typeof import('./src/components/personas/PersonaHeader.vue')['default']
     PersonaList: typeof import('./src/components/personas/PersonaList.vue')['default']
     PersonaMenu: typeof import('./src/components/personas/PersonaMenu.vue')['default']

@@ -3,18 +3,20 @@
     class="ag-theme-alpine flex-1"
     :class="isDark ? 'ag-theme-dark' : ''"
     :column-defs="columnDefs.value"
+    :get-row-class="getRowClass"
     :row-data="data"
     :default-col-def="defaultColDef"
     row-selection="multiple"
     animate-rows="true"
     @first-data-rendered="onFirstDataRendered"
+    @grid-ready="onGridReady"
   />
 </template>
 <script setup lang="ts">
 import { defineProps, withDefaults } from 'vue';
-import { FullPersonaData } from '~/calculators/data';
+import { FullPersonaData, PersonaData } from '~/calculators/data';
 
-import { FirstDataRenderedEvent } from 'ag-grid-community/main';
+import { FirstDataRenderedEvent, RowClassParams } from 'ag-grid-community/main';
 import { AgGridVue } from 'ag-grid-vue3';  // the AG Grid Vue Component
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
@@ -23,10 +25,13 @@ const STRONG_PERCENT = 0.6;
 
 const props = withDefaults(defineProps<{
   personas?: FullPersonaData[]
-  highlightBestPersonasLevel: number,
+  highlightBestPersonaStatAtLevel: number,
+  highlightBestPersonaStatAtTheirLevel: boolean,
+
 }>(), {
   personas: () => [],
-  highlightBestPersonasLevel: () => 1,
+  highlightBestPersonaStatAtLevel: () => 1,
+  highlightBestPersonaStatAtTheirLevel: () => false,
 });
 
 const isDark = useDark();
@@ -44,13 +49,20 @@ const numericDef = {
   type: 'numericColumn', filter: 'agNumberColumnFilter'
 };
 
-const data = computed(() => {
-  if (props.highlightBestPersonasLevel) {
+
+const anyPersonaStatHigherThan = (persona: PersonaData, min: number) => statChildrenCols.some(stat => Number(persona[stat] || 0) >= min);
+const handleHighlightBestPersonasLevel = (personas: FullPersonaData[]) => {
+  if (props.highlightBestPersonaStatAtLevel) {
     return props.personas
-      .filter(({ level }) => level <= props.highlightBestPersonasLevel)
-      .filter(persona => statChildrenCols.some(stat => Number(persona[stat] || 0) >= STRONG_PERCENT * props.highlightBestPersonasLevel));
+      .filter(({ level }) => level <= props.highlightBestPersonaStatAtLevel)
+      .filter(persona => anyPersonaStatHigherThan(persona, STRONG_PERCENT * props.highlightBestPersonaStatAtLevel));
   }
-  return props.personas;
+  return personas;
+};
+
+const data = computed(() => {
+  const highlightedBestPersonasLevel = handleHighlightBestPersonasLevel(props.personas);
+  return highlightedBestPersonasLevel;
 });
 
 const columnDefs = reactive({
@@ -73,7 +85,10 @@ const columnDefs = reactive({
             ...numericDef,
             cellClassRules: {
               'c-green-500': ({ value }) => {
-                return props.highlightBestPersonasLevel && value >= STRONG_PERCENT * props.highlightBestPersonasLevel;
+                return props.highlightBestPersonaStatAtLevel && value >= STRONG_PERCENT * props.highlightBestPersonaStatAtLevel;
+              },
+              'c-red-500': ({ value, data }) => {
+                return props.highlightBestPersonaStatAtTheirLevel && value >= (STRONG_PERCENT + 0.15) * data.level;
               },
             }
           })),
@@ -96,13 +111,32 @@ const columnDefs = reactive({
       ],
    });
 
+const getRowClass = ({ data }: RowClassParams<PersonaData>) => {
+  // const { highlightBestPersonaStatAtTheirLevel } = props;
+  // if (highlightBestPersonaStatAtTheirLevel && data) {
+  //   return anyPersonaStatHigherThan(data, (STRONG_PERCENT + 0.15) * data.level) ? 'bg-orange' : '';
+  // }
+  return '';
+};
+
 const onFirstDataRendered = (params: FirstDataRenderedEvent<any>) => {
-  const { api, columnApi } = params;
+  const { columnApi } = params;
   if (isSmallScreen && columnApi !== null) {
     const allColumnIds = (columnApi.getColumns() || []).map(column => column.getId());
     columnApi.autoSizeColumns(allColumnIds, false);
   }
 };
+
+let gridApi = null;
+const onGridReady = (params) => {
+  gridApi = params.api;
+};
+
+watch(() => props.highlightBestPersonaStatAtTheirLevel, () => {
+  if (gridApi) {
+    gridApi.refreshCells();
+  }
+});
 
 </script>
 <style lang="scss" scoped>
@@ -116,20 +150,6 @@ const onFirstDataRendered = (params: FirstDataRenderedEvent<any>) => {
     --ag-header-background-color: #070B10F4;
     --ag-odd-row-background-color: rgb(0, 0, 0, 0.03);
     --ag-header-column-resize-handle-color: rgb(126, 46, 132);
-
-    // --arc-palette-foregroundSecondary:#7C99C6FF;
-    // --arc-palette-foregroundPrimary:#EAEFF6FF;
-    // --arc-palette-maxContrastColor:#EAEFF6FF;
-    // --arc-background-simple-color:#2D4468FF;
-    // --arc-palette-backgroundExtra:#070B10F4;
-    // --arc-palette-hover:#6577917A;
-    // --arc-palette-subtitle:#787B7EF9;
-    // --arc-palette-focus:#556885CE;
-    // --arc-palette-title:#DEE2E7F4;
-    // --arc-palette-minContrastColor:#2D4468FF;
-    // --arc-palette-background:#0E1520F6;
-    // --arc-palette-foregroundTertiary:#2D4468FF;
-    // --arc-palette-cutoutColor:#2D4468FF;
 }
 .ag-root ::-webkit-scrollbar {
   background-color: #0E1520F6;
