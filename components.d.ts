@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     Header: typeof import('./src/components/personas/Header.vue')['default']
     PersonaHeader: typeof import('./src/components/personas/PersonaHeader.vue')['default']
     PersonaList: typeof import('./src/components/personas/PersonaList.vue')['default']
+    PersonaMenu: typeof import('./src/components/personas/PersonaMenu.vue')['default']
     PersonaTable: typeof import('./src/components/personas/PersonaTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -17,5 +18,6 @@ declare module '@vue/runtime-core' {
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheHeader: typeof import('./src/components/TheHeader.vue')['default']
     TheInput: typeof import('./src/components/TheInput.vue')['default']
+    TheMenu: typeof import('./src/components/TheMenu.vue')['default']
   }
 }

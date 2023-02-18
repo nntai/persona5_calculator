@@ -36,14 +36,19 @@
           </template>
         </template>
       </nav>
-      <button
-        icon-btn
-        class="flex"
-      >
-        <div
-          i-carbon-menu
-        />
-      </button>
+      <VDropdown>
+        <button
+          icon-btn
+          class="flex"
+        >
+          <div
+            i-carbon-menu
+          />
+        </button>
+        <template #popper>
+          <TheMenu />
+        </template>
+      </VDropdown>
     </div>
   </div>
 </template>
@@ -66,6 +71,4 @@ const headers = [
 ];
 </script>
 <style lang="scss" scoped>
-.router-link-exact-active  {
-}
 </style>

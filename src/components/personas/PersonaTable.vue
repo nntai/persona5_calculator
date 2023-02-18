@@ -3,7 +3,7 @@
     class="ag-theme-alpine flex-1"
     :class="isDark ? 'ag-theme-dark' : ''"
     :column-defs="columnDefs.value"
-    :row-data="personas"
+    :row-data="data"
     :default-col-def="defaultColDef"
     row-selection="multiple"
     animate-rows="true"
@@ -19,10 +19,14 @@ import { AgGridVue } from 'ag-grid-vue3';  // the AG Grid Vue Component
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
-withDefaults(defineProps<{
+const STRONG_PERCENT = 0.6;
+
+const props = withDefaults(defineProps<{
   personas?: FullPersonaData[]
+  highlightBestPersonasLevel: number,
 }>(), {
   personas: () => [],
+  highlightBestPersonasLevel: () => 1,
 });
 
 const isDark = useDark();
@@ -39,6 +43,16 @@ const defaultColDef = {
 const numericDef = {
   type: 'numericColumn', filter: 'agNumberColumnFilter'
 };
+
+const data = computed(() => {
+  if (props.highlightBestPersonasLevel) {
+    return props.personas
+      .filter(({ level }) => level <= props.highlightBestPersonasLevel)
+      .filter(persona => statChildrenCols.some(stat => Number(persona[stat] || 0) >= STRONG_PERCENT * props.highlightBestPersonasLevel));
+  }
+  return props.personas;
+});
+
 const columnDefs = reactive({
      value: [
         { headerName: 'Level', field: 'level', ...numericDef, pinned: isSmallScreen ? null : 'left', width: 1, sort: 'asc' },
@@ -57,6 +71,11 @@ const columnDefs = reactive({
             field: stat,
             columnGroupShow: 'closed',
             ...numericDef,
+            cellClassRules: {
+              'c-green-500': ({ value }) => {
+                return props.highlightBestPersonasLevel && value >= STRONG_PERCENT * props.highlightBestPersonasLevel;
+              },
+            }
           })),
         },
         {
