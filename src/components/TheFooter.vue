@@ -1,7 +1,7 @@
 <template>
   <nav
     text-xl
-    mt-6
+    mt-2
     inline-flex
     gap-2
   >

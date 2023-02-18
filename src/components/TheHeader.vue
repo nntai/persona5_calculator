@@ -1,36 +1,55 @@
 <template>
   <div
-    class="flex flex-col items-center content-start"
+    class="flex flex-col items-start justify-start w-full"
   >
-    <div>
+    <div
+      c-red-500
+      font-500
+      text-6
+    >
       Persona 5 Calculator
     </div>
-    <nav
+    <div
       text-xl
-      mt-6
+      mt-2
       inline-flex
       gap-2
+      w-full
+      class="flex flex-row items-center justify-between"
     >
-      <template
-        v-for="({title, href}, index) in headers"
-        :key="title"
-      >
-        <a
-          rel="noreferrer"
-          :href="href"
-          :title="title"
-          class="c-indigo-500"
+      <nav>
+        <template
+          v-for="({title, href}, index) in headers"
+          :key="title"
         >
-          {{ title }}
-        </a>
-        <template v-if="index < headers.length - 1">
-          -
+          <router-link
+            rel="noreferrer"
+            :to="href"
+            :title="title"
+            active-class="c-green-500"
+            class="text-5"
+          >
+            {{ title }}
+          </router-link>
+          <template v-if="index < headers.length - 1">
+            -
+          </template>
         </template>
-      </template>
-    </nav>
+      </nav>
+      <button
+        icon-btn
+        class="flex"
+      >
+        <div
+          i-carbon-menu
+        />
+      </button>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
+
 const headers = [
     {
         title: 'Personas',
@@ -46,6 +65,7 @@ const headers = [
     },
 ];
 </script>
-<style>
-
+<style lang="scss" scoped>
+.router-link-exact-active  {
+}
 </style>

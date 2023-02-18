@@ -7,8 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    PersonaList: typeof import('./src/components/PersonaList.vue')['default']
-    PersonaTable: typeof import('./src/components/PersonaTable.vue')['default']
+    Header: typeof import('./src/components/personas/Header.vue')['default']
+    PersonaHeader: typeof import('./src/components/personas/PersonaHeader.vue')['default']
+    PersonaList: typeof import('./src/components/personas/PersonaList.vue')['default']
+    PersonaTable: typeof import('./src/components/personas/PersonaTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheCounter: typeof import('./src/components/TheCounter.vue')['default']
